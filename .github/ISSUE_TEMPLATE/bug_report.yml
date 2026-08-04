@@ -23,8 +23,8 @@ body:
       label: Steps to Reproduce
       description: Step-by-step instructions to reproduce the behavior.
       placeholder: |
-        1. Run `/clone-website https://example.com`
-        2. Wait for agents to finish
+        1. Fill docs/project-brief.md
+        2. Run npm run dev
         3. See error in terminal...
     validations:
       required: true
@@ -44,13 +44,6 @@ body:
       description: What actually happened? Include error messages or screenshots if possible.
     validations:
       required: true
-
-  - type: input
-    id: target-url
-    attributes:
-      label: Target URL
-      description: The website URL you were trying to clone (if applicable).
-      placeholder: https://example.com
 
   - type: dropdown
     id: os
@@ -73,11 +66,11 @@ body:
       required: true
 
   - type: input
-    id: claude-code-version
+    id: agent-version
     attributes:
-      label: Claude Code Version
-      description: Run `claude --version` to find this.
-      placeholder: 1.x.x
+      label: AI Agent / Tool
+      description: Which agent were you using (and version if known)?
+      placeholder: Claude Code 1.x / Cursor / OpenCode / etc.
 
   - type: textarea
     id: additional

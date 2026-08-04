@@ -1,3 +1,4 @@
 read:
   - AGENTS.md
-  - docs/research/INSPECTION_GUIDE.md
+  - docs/conventions.md
+  - docs/workflows.md

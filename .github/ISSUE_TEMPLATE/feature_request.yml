@@ -36,9 +36,9 @@ body:
     attributes:
       label: Category
       options:
-        - Cloning pipeline
-        - Asset extraction
-        - Component generation
+        - Agent workflows
+        - Design system docs
+        - UI components
         - Documentation
         - Developer experience
         - Other
