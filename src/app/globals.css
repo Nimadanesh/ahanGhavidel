@@ -276,3 +276,49 @@
     background: color-mix(in oklch, var(--primary) 40%, transparent);
   }
 }
+
+/* Subtle variant — thinner, AI-input-like refined edge for small UI elements */
+.pitch-glow-border-subtle {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: color-mix(in oklch, var(--primary) 12%, transparent);
+}
+
+.pitch-glow-border-subtle::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 100deg,
+    color-mix(in oklch, var(--primary) 6%, transparent) 130deg,
+    color-mix(in oklch, var(--primary) 35%, transparent) 155deg,
+    color-mix(in oklch, var(--link) 25%, transparent) 170deg,
+    color-mix(in oklch, var(--primary) 35%, transparent) 185deg,
+    color-mix(in oklch, var(--primary) 6%, transparent) 210deg,
+    transparent 260deg,
+    transparent 360deg
+  );
+  animation: pitch-border-spin 8s linear infinite;
+}
+
+.pitch-glow-border-subtle > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pitch-glow-border-subtle::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .pitch-glow-border-subtle {
+    background: color-mix(in oklch, var(--primary) 25%, transparent);
+  }
+}

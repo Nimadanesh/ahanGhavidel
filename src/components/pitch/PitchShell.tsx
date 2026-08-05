@@ -23,7 +23,10 @@ export function PitchShell({ step, children }: PitchShellProps) {
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const goPrev = useCallback(() => {
-    if (step <= 1) return;
+    if (step <= 1) {
+      router.push("/p/0");
+      return;
+    }
     router.push(pitchPath((step - 1) as PitchStep));
   }, [router, step]);
 

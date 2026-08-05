@@ -14,9 +14,8 @@ type PitchFooterProps = {
 };
 
 export function PitchFooter({ step }: PitchFooterProps) {
-  const isFirst = step <= 1;
   const isLast = step >= PITCH_SCREEN_COUNT;
-  const prevStep = (step - 1) as PitchStep;
+  const prevPath = step <= 1 ? "/p/0" : pitchPath((step - 1) as PitchStep);
   const nextStep = (step + 1) as PitchStep;
 
   const iconBtn = buttonVariants({ variant: "ghost", size: "icon-lg" });
@@ -27,23 +26,13 @@ export function PitchFooter({ step }: PitchFooterProps) {
       role="contentinfo"
     >
       <div className="mx-auto flex h-12 max-w-[480px] items-center justify-between gap-3">
-        {isFirst ? (
-          <span
-            className={cn(iconBtn, "pointer-events-none opacity-40")}
-            aria-disabled="true"
-            aria-label="صفحه قبل"
-          >
-            <ChevronRight className="size-5" strokeWidth={1.75} aria-hidden />
-          </span>
-        ) : (
-          <Link
-            href={pitchPath(prevStep)}
-            className={cn(iconBtn, "active:scale-[0.97]")}
-            aria-label="صفحه قبل"
-          >
-            <ChevronRight className="size-5" strokeWidth={1.75} aria-hidden />
-          </Link>
-        )}
+        <Link
+          href={prevPath}
+          className={cn(iconBtn, "active:scale-[0.97]")}
+          aria-label="صفحه قبل"
+        >
+          <ChevronRight className="size-5" strokeWidth={1.75} aria-hidden />
+        </Link>
 
         <p
           className="tnum min-w-[4.5rem] text-center text-[0.8125rem] font-medium text-muted-foreground"
