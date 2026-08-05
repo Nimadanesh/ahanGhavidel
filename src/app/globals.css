@@ -2,14 +2,43 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* DigiHouse tokens — canonical: docs/DESIGN_SYSTEM.md
+   Dark-first Telegram-oriented palette. Product is iron pitch demo;
+   finance Mini App metaphors are not required — tokens/patterns only.
+   UI font: Iran Yekan (licensed local files) — see public/fonts/README.md */
+
+/* Iran Yekan — drop licensed .woff2 files into public/fonts/ (build works without them; falls back) */
+@font-face {
+  font-family: "IranYekan";
+  src: url("/fonts/IranYekan-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IranYekan";
+  src: url("/fonts/IranYekan-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IranYekan";
+  src: url("/fonts/IranYekan-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans-stack);
+  --font-mono: var(--font-mono-stack);
+  --font-heading: var(--font-sans-stack);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -27,6 +56,11 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -39,6 +73,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-link: var(--link);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -46,85 +81,198 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --ease-out: var(--ease-out-curve);
+  --ease-in-out: var(--ease-in-out-curve);
+  --ease-drawer: var(--ease-drawer-curve);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
+/* Dark = default (DigiHouse :root, .dark) */
+:root,
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  color-scheme: dark;
+
+  /* Iran Yekan primary (product decision); system UI fallback if files missing */
+  --font-sans-stack: "IranYekan", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono-stack: ui-monospace, "SF Mono", "Segoe UI Mono", Menlo, Monaco,
+    Consolas, "Liberation Mono", monospace;
+
+  /* Motion */
+  --ease-out-curve: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-curve: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer-curve: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Colors — hex sources in DESIGN_SYSTEM.md */
+  --background: oklch(0.225 0.025 256); /* #17212b canvas */
+  --foreground: oklch(1 0 0); /* #ffffff */
+  --card: oklch(0.267 0.027 256); /* #232e3c block */
+  --card-foreground: oklch(1 0 0);
+  --surface: oklch(0.267 0.027 256); /* #232e3c */
+  --surface-2: oklch(0.31 0.027 256); /* #2b3744 */
+  --popover: oklch(0.267 0.027 256);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.625 0.177 250); /* #3390ec */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.31 0.027 256); /* #2b3744 */
+  --secondary-foreground: oklch(0.625 0.177 250); /* primary text on secondary */
+  --muted: oklch(0.243 0.026 256); /* #1c2733 */
+  /* Lighter than Telegram #708499 — readable secondary on #17212b canvas */
+  --muted-foreground: oklch(0.78 0.018 250); /* ~#b4c0cc */
+  --accent: oklch(0.625 0.177 250 / 0.14); /* #3390ec/14% */
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.62 0.22 25); /* #e53935 */
+  --danger: oklch(0.62 0.22 25);
+  --success: oklch(0.72 0.17 145);
+  --warning: oklch(0.79 0.16 70);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(1 0 0 / 0.1);
+  --ring: oklch(0.625 0.177 250); /* #3390ec */
+  --link: oklch(0.72 0.12 245); /* #6ab3f3-ish */
+
+  --chart-1: oklch(0.625 0.177 250);
+  --chart-2: oklch(0.72 0.17 145);
+  --chart-3: oklch(0.79 0.16 70);
+  --chart-4: oklch(0.62 0.22 25);
+  --chart-5: oklch(0.78 0.018 250);
+
+  --radius: 0.75rem; /* 12px blocks */
+
+  --sidebar: oklch(0.267 0.027 256);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.625 0.177 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.625 0.177 250 / 0.14);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.08);
+  --sidebar-ring: oklch(0.625 0.177 250);
+}
+
+/* Light mirror (.light) */
+.light {
+  color-scheme: light;
+
+  --background: oklch(0.965 0 0); /* #f4f4f5 */
+  --foreground: oklch(0.18 0.004 256);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.004 256);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.96 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.004 256);
+  --primary: oklch(0.58 0.19 250); /* #3390ec */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.58 0.19 250);
+  --muted: oklch(0.93 0 0);
+  --muted-foreground: oklch(0.58 0.006 250); /* #707579 */
+  --accent: oklch(0.58 0.19 250 / 0.12);
+  --accent-foreground: oklch(0.18 0.004 256);
+  --destructive: oklch(0.58 0.22 25);
+  --danger: oklch(0.58 0.22 25);
+  --success: oklch(0.6 0.17 145);
+  --warning: oklch(0.75 0.15 70);
+  --border: oklch(0 0 0 / 0.08);
+  --input: oklch(0 0 0 / 0.06);
+  --ring: oklch(0.58 0.19 250);
+  --link: oklch(0.55 0.16 250);
+
+  --chart-1: oklch(0.58 0.19 250);
+  --chart-2: oklch(0.6 0.17 145);
+  --chart-3: oklch(0.75 0.15 70);
+  --chart-4: oklch(0.58 0.22 25);
+  --chart-5: oklch(0.58 0.006 250);
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.18 0.004 256);
+  --sidebar-primary: oklch(0.58 0.19 250);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.58 0.19 250 / 0.12);
+  --sidebar-accent-foreground: oklch(0.18 0.004 256);
+  --sidebar-border: oklch(0 0 0 / 0.08);
+  --sidebar-ring: oklch(0.58 0.19 250);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    @apply font-sans antialiased;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
-  html {
-    @apply font-sans;
+
+  /* Tabular nums helper — DESIGN_SYSTEM.md */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+/* Press feedback + reduced motion (global helpers) */
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    .motion-safe-transform {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+}
+
+/* Screen 1 — suggestion card ambient border (conic sweep / idle loop)
+   Animate transform only; static accent ring under reduced-motion. */
+@keyframes pitch-border-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.pitch-glow-border {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: 1px;
+  /* static edge so reduced-motion / first paint still reads as framed */
+  background: color-mix(in oklch, var(--primary) 22%, transparent);
+}
+
+.pitch-glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 80deg,
+    color-mix(in oklch, var(--primary) 8%, transparent) 120deg,
+    color-mix(in oklch, var(--primary) 55%, transparent) 155deg,
+    color-mix(in oklch, var(--link) 40%, transparent) 175deg,
+    color-mix(in oklch, var(--primary) 55%, transparent) 195deg,
+    color-mix(in oklch, var(--primary) 8%, transparent) 230deg,
+    transparent 270deg,
+    transparent 360deg
+  );
+  /* linear + long period: ambient idle loop, not UI interaction */
+  animation: pitch-border-spin 6s linear infinite;
+}
+
+.pitch-glow-border > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pitch-glow-border::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .pitch-glow-border {
+    background: color-mix(in oklch, var(--primary) 40%, transparent);
   }
 }

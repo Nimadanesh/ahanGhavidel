@@ -1,8 +1,8 @@
 {
-  "name": "base-template",
+  "name": "ghavidel-pitch-demo",
   "version": "0.1.0",
   "private": true,
-  "description": "Agent-driven UI/UX vibe coding starter template (Next.js + shadcn/ui + Tailwind)",
+  "description": "12-screen pitch demo for آهن فروشی قویدل · بناب (agentsTEAM)",
   "author": "JCodesMore",
   "license": "MIT",
   "keywords": [
