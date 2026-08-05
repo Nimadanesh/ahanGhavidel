@@ -62,13 +62,13 @@ export function AudiencesScreen() {
               tabIndex={selected ? 0 : -1}
               onClick={() => setActiveId(group.id)}
               className={cn(
-                "min-h-12 rounded-[10px] px-2 py-2.5 text-center text-[0.75rem] font-semibold leading-snug transition-[transform,color] duration-150 ease-[var(--ease-out)] active:scale-[0.97]",
+                "min-h-12 rounded-[10px] px-2 py-2.5 text-center text-[0.75rem] font-bold leading-snug transition-[transform,color] duration-150 ease-[var(--ease-out)] active:scale-[0.97]",
                 selected
                   ? "bg-primary text-primary-foreground"
                   : "pitch-glow-border-subtle text-muted-foreground",
               )}
             >
-              <div className="rounded-[9px] bg-card px-2 py-2.5">
+              <div className="rounded-[9px] px-2 py-2.5">
                 {group.tabLabel}
               </div>
             </button>
