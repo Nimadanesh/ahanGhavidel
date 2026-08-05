@@ -59,7 +59,7 @@ export function PitchShell({ step, children }: PitchShellProps) {
       <div className="mx-auto flex min-h-dvh w-full max-w-[480px] flex-col bg-background">
         <PitchHeader />
         <main
-          className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 py-4 pb-[calc(5.5rem+max(env(safe-area-inset-bottom),0.75rem))]"
+          className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 pt-20 pb-[calc(5.5rem+max(env(safe-area-inset-bottom),0.75rem))]"
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
