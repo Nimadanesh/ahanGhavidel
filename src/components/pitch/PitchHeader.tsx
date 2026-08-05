@@ -1,6 +1,6 @@
 import { Phone } from "lucide-react";
 
-const CONTACT_PHONE = "+989123456789";
+const CONTACT_PHONE = "+989140069949";
 
 export function PitchHeader() {
   return (
